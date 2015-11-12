@@ -14,7 +14,7 @@ public class Purchase {
 
     String date;
     String creditCard;
-    String cvv;
+    Integer cvv;
     String category;
 
     @ManyToOne

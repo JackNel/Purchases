@@ -46,8 +46,13 @@ public class PurchasesController {
                 Purchase purchase = new Purchase();
                 purchase.date = columns[1];
                 purchase.creditCard = columns[2];
-                purchase.cvv = columns[3];
+                purchase.cvv = Integer.valueOf(columns[3]);
                 purchase.category = columns[4];
+
+                String id = columns[0];
+                Integer idNum = Integer.valueOf(id);
+                purchase.customer = customers.findOne(idNum);
+
                 purchases.save(purchase);
 
             }
@@ -55,10 +60,18 @@ public class PurchasesController {
     }
 
     @RequestMapping("/")
-    public String home(Model model) {
+    public String home(Model model, String category) {
+        if (category != null) {
+            model.addAttribute("customers", customers.findAll());
+            model.addAttribute("purchases", purchases.findByCategory(category));
+        }
+        else {
+            model.addAttribute("customers", customers.findAll());
+            model.addAttribute("purchases", purchases.findAll());
+        }
         return "home";
-    }
 
+    }
 
     static String readFile(String fileName) {
         File f = new File(fileName);
