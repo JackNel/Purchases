@@ -48,10 +48,8 @@ public class PurchasesController {
                 purchase.creditCard = columns[2];
                 purchase.cvv = Integer.valueOf(columns[3]);
                 purchase.category = columns[4];
-
-                String id = columns[0];
-                Integer idNum = Integer.valueOf(id);
-                purchase.customer = customers.findOne(idNum);
+                int id = Integer.valueOf(columns[0]);
+                purchase.customer = customers.findOne(id);
 
                 purchases.save(purchase);
 
