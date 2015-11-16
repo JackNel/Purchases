@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Purchases</title>
 </head>
 <body>
 
@@ -36,5 +36,9 @@
     {{/customer}}
     {{/purchases}}
 </table>
+<br><br>
+{{#showNext}}
+<a href="/?page={{nextPage}}{{#category}}&category={{.}}{{/category}}">Next</a>
+{{/showNext}}
 </body>
 </html>
